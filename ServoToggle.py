@@ -1,28 +1,29 @@
-#3v power pin to the servo VCC
-# Ground pin to the servo GND
-# GPIO pin 16 to the servo Signal pin
-
-# We imports the GPIO module
-import RPi.GPIO as GPIO
-# We import the command sleep from time
+import pigpio
 from time import sleep
 
-# Stops all warnings from appearing
-GPIO.setwarnings(False)
+# Connect to pigpio daemon
+pi = pigpio.pi()
 
-# We name all the pins on BOARD mode
-GPIO.setmode(GPIO.BOARD)
-# Set an output for the PWM Signal
-GPIO.setup(16, GPIO.OUT)
+SERVO_PIN = 18  # PWM pin
 
-# Set up the PWM on pin #16 at 50Hz
-pwm = GPIO.PWM(16, 50)
-pwm.start(0) # Start the servo with 0 duty cycle ( at 0 deg position )
-pwm.ChangeDutyCycle(5) # Tells the servo to turn to the left ( -90 deg position )
-sleep(0.5) # Tells the servo to Delay for 5sec
-pwm.ChangeDutyCycle(7.5) # Tells the servo to turn to the neutral position ( at 0 deg position )
-sleep(0.5) # Tells the servo to Delay for 5sec
-pwm.ChangeDutyCycle(10) # Tells the servo to turn to the right ( +90 deg position )
-sleep(0.5) # Tells the servo to Delay for 5sec
-pwm.stop(0) # Stop the servo with 0 duty cycle ( at 0 deg position )
-GPIO.cleanup() # Clean up all the ports we've used.
+# Pulse width limits (us)
+MIN_PW = 500   # 0°
+MAX_PW = 2500  # 180°
+
+def set_angle(angle):
+    angle = max(0, min(180, angle))
+    pulse_width = MIN_PW + (angle / 180.0) * (MAX_PW - MIN_PW)
+    pi.set_servo_pulsewidth(SERVO_PIN, pulse_width)
+    print(f"Angle: {angle}°, Pulse: {pulse_width}µs")
+
+# Test
+while True:
+	set_angle(0)
+	sleep(1)
+	set_angle(90)
+	sleep(1)
+
+
+# Stop PWM
+pi.set_servo_pulsewidth(SERVO_PIN, 0)
+pi.stop()
