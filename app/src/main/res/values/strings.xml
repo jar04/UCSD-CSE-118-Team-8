@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SmartDoorWatch</string>
+    <string name="door_locked">Door Status: Locked</string>
+    <string name="door_unlocked">Door Status: Unlocked</string>
+    <string name="unlock">UNLOCK</string>
+    <string name="lock">LOCK</string>
+    <string name="default_door_name">Front Door</string>
+    <string name="error_placeholder"></string>
+</resources>
