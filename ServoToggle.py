@@ -13,6 +13,8 @@ from bluezero import device
 SERVO_PIN = 18           # GPIO pin for servo
 MIN_PW = 500             # 0°
 MAX_PW = 2500            # 180°
+lock = 0
+
 
 pi = pigpio.pi()
 
@@ -25,12 +27,16 @@ def set_angle(angle: int):
 
 
 def toggle_servo():
-    """Simple 0° -> 90° toggle motion."""
-    print("Toggling servo 0° -> 90°")
-    set_angle(0)
-    sleep(1)
-    set_angle(90)
-    sleep(1)
+    """Toggle servo between 0° and 90°."""
+    global lock
+    if lock == 0:
+        set_angle(0)
+        lock = 1
+    else:
+        set_angle(90)
+        lock = 0
+
+    
 
 
 # === BLE Nordic UART Service setup ===
