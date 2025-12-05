@@ -112,11 +112,17 @@ fun AddDevice(
                             scannedDevices.clear()
                             selectedDevice = null
                             try {
-                                bleManager.startScanning { device ->
-                                    if (scannedDevices.none { it.address == device.address }) {
-                                        scannedDevices.add(device)
+                                bleManager.startScanning(
+                                    onDeviceFound = { device ->
+                                        if (scannedDevices.none { it.address == device.address }) {
+                                            scannedDevices.add(device)
+                                        }
+                                    },
+                                    onScanFailed = { errorCode ->
+                                        isScanning = false
+                                        // Scan failed - stop loading indicator
                                     }
-                                }
+                                )
                             } catch (e: Exception) {
                                 isScanning = false
                                 // Scanning failed - likely on emulator

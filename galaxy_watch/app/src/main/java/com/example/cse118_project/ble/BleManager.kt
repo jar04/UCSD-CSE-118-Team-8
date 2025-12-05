@@ -27,9 +27,21 @@ class BleManager(private val context: Context) {
         val NUS_TX_CHAR_UUID: UUID = UUID.fromString("6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
     }
 
-    fun startScanning(onDeviceFound: (Device) -> Unit) {
+    fun startScanning(onDeviceFound: (Device) -> Unit, onScanFailed: ((Int) -> Unit)? = null) {
         // Stop any existing scan first
         stopScanning()
+        
+        if (bluetoothAdapter == null) {
+            Log.e("BleManager", "Bluetooth adapter is null")
+            onScanFailed?.invoke(-1)
+            return
+        }
+        
+        if (!bluetoothAdapter.isEnabled) {
+            Log.e("BleManager", "Bluetooth is not enabled")
+            onScanFailed?.invoke(-2)
+            return
+        }
         
         val filters = listOf(
             ScanFilter.Builder()
@@ -45,20 +57,36 @@ class BleManager(private val context: Context) {
             override fun onScanResult(callbackType: Int, result: ScanResult) {
                 val device = result.device
                 val name = device.name ?: "Unknown Device"
+                Log.d("BleManager", "Found device: $name (${device.address})")
                 onDeviceFound(Device(name, device.address))
             }
 
             override fun onScanFailed(errorCode: Int) {
-                Log.e("BleManager", "Scan failed: $errorCode")
+                Log.e("BleManager", "Scan failed with error code: $errorCode")
+                onScanFailed?.invoke(errorCode)
             }
         }
         
-        bluetoothLeScanner?.startScan(filters, settings, scanCallback)
+        try {
+            bluetoothLeScanner?.startScan(filters, settings, scanCallback)
+            Log.d("BleManager", "Started BLE scan")
+        } catch (e: SecurityException) {
+            Log.e("BleManager", "Permission denied for BLE scan", e)
+            onScanFailed?.invoke(-3)
+        } catch (e: Exception) {
+            Log.e("BleManager", "Failed to start scan", e)
+            onScanFailed?.invoke(-4)
+        }
     }
 
     fun stopScanning() {
         scanCallback?.let { callback ->
-            bluetoothLeScanner?.stopScan(callback)
+            try {
+                bluetoothLeScanner?.stopScan(callback)
+                Log.d("BleManager", "Stopped BLE scan")
+            } catch (e: Exception) {
+                Log.e("BleManager", "Error stopping scan", e)
+            }
             scanCallback = null
         }
     }
