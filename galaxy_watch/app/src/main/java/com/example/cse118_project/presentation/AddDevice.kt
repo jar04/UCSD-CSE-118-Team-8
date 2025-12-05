@@ -14,6 +14,7 @@ import androidx.wear.compose.material.*
 import androidx.wear.input.RemoteInputIntentHelper
 import com.example.cse118_project.ble.BleManager
 import com.example.cse118_project.data.Device
+import kotlinx.coroutines.delay
 
 private const val KEY_DEVICE_NAME = "device_name"
 
@@ -26,8 +27,21 @@ fun AddDevice(
     val bleManager = remember { BleManager(context) }
     var deviceName by remember { mutableStateOf("") }
     var isScanning by remember { mutableStateOf(false) }
+    var isConnecting by remember { mutableStateOf(false) }
     var selectedDevice by remember { mutableStateOf<Device?>(null) }
+    var connectionError by remember { mutableStateOf<String?>(null) }
     val scannedDevices = remember { mutableStateListOf<Device>() }
+
+    // Auto-stop scanning after 30 seconds
+    LaunchedEffect(isScanning) {
+        if (isScanning) {
+            delay(30000) // 30 seconds
+            if (isScanning) {
+                isScanning = false
+                bleManager.stopScanning()
+            }
+        }
+    }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -111,6 +125,7 @@ fun AddDevice(
                             isScanning = true
                             scannedDevices.clear()
                             selectedDevice = null
+                            connectionError = null
                             try {
                                 bleManager.startScanning(
                                     onDeviceFound = { device ->
@@ -132,7 +147,8 @@ fun AddDevice(
                             bleManager.stopScanning()
                         }
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = !isConnecting
                 ) {
                     Text(text = if (isScanning) "Stop Scanning" else "Scan for Devices")
                 }
@@ -142,6 +158,13 @@ fun AddDevice(
                 item {
                     CircularProgressIndicator(modifier = Modifier.padding(8.dp))
                 }
+                
+                item {
+                    Text(
+                        text = if (scannedDevices.isEmpty()) "Searching..." else "${scannedDevices.size} device(s) found",
+                        style = MaterialTheme.typography.caption2
+                    )
+                }
             }
 
             items(scannedDevices) { device ->
@@ -149,6 +172,7 @@ fun AddDevice(
                     onClick = {
                         selectedDevice = device
                         isScanning = false
+                        connectionError = null
                         bleManager.stopScanning()
                     },
                     label = { Text(text = device.name) },
@@ -162,22 +186,57 @@ fun AddDevice(
                 )
             }
 
+            if (connectionError != null) {
+                item {
+                    Text(
+                        text = connectionError!!,
+                        style = MaterialTheme.typography.caption2,
+                        color = MaterialTheme.colors.error
+                    )
+                }
+            }
+
             if (selectedDevice != null) {
                 item {
                     Spacer(modifier = Modifier.height(8.dp))
                 }
 
-                item {
-                    Button(
-                        onClick = {
-                            selectedDevice?.let { device ->
-                                val finalName = if (deviceName.isEmpty()) device.name else deviceName
-                                onDeviceSelected(Device(finalName, device.address))
-                            }
-                        },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(text = "Done")
+                if (isConnecting) {
+                    item {
+                        CircularProgressIndicator(modifier = Modifier.padding(8.dp))
+                    }
+                    item {
+                        Text(
+                            text = "Testing connection...",
+                            style = MaterialTheme.typography.caption2
+                        )
+                    }
+                } else {
+                    item {
+                        Button(
+                            onClick = {
+                                selectedDevice?.let { device ->
+                                    isConnecting = true
+                                    connectionError = null
+                                    
+                                    bleManager.testConnection(
+                                        deviceAddress = device.address,
+                                        onSuccess = {
+                                            isConnecting = false
+                                            val finalName = if (deviceName.isEmpty()) device.name else deviceName
+                                            onDeviceSelected(Device(finalName, device.address))
+                                        },
+                                        onFailure = { error ->
+                                            isConnecting = false
+                                            connectionError = "Connection failed: $error"
+                                        }
+                                    )
+                                }
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(text = "Done")
+                        }
                     }
                 }
             }
