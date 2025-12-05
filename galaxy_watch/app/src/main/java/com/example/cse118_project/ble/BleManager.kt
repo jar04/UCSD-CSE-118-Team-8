@@ -19,6 +19,7 @@ class BleManager(private val context: Context) {
     private val bluetoothLeScanner = bluetoothAdapter?.bluetoothLeScanner
     
     private var bluetoothGatt: BluetoothGatt? = null
+    private var scanCallback: ScanCallback? = null
 
     companion object {
         val NUS_SERVICE_UUID: UUID = UUID.fromString("6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
@@ -27,6 +28,9 @@ class BleManager(private val context: Context) {
     }
 
     fun startScanning(onDeviceFound: (Device) -> Unit) {
+        // Stop any existing scan first
+        stopScanning()
+        
         val filters = listOf(
             ScanFilter.Builder()
                 .setServiceUuid(ParcelUuid(NUS_SERVICE_UUID))
@@ -37,7 +41,7 @@ class BleManager(private val context: Context) {
             .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
             .build()
 
-        bluetoothLeScanner?.startScan(filters, settings, object : ScanCallback() {
+        scanCallback = object : ScanCallback() {
             override fun onScanResult(callbackType: Int, result: ScanResult) {
                 val device = result.device
                 val name = device.name ?: "Unknown Device"
@@ -47,13 +51,16 @@ class BleManager(private val context: Context) {
             override fun onScanFailed(errorCode: Int) {
                 Log.e("BleManager", "Scan failed: $errorCode")
             }
-        })
+        }
+        
+        bluetoothLeScanner?.startScan(filters, settings, scanCallback)
     }
 
     fun stopScanning() {
-        // In a real app, we'd need to keep a reference to the callback to stop it properly.
-        // For this simple example, we might just stop all scans or ignore.
-        // Ideally, pass the callback to startScanning and return it, or store it.
+        scanCallback?.let { callback ->
+            bluetoothLeScanner?.stopScan(callback)
+            scanCallback = null
+        }
     }
 
     fun toggleDevice(deviceAddress: String) {
