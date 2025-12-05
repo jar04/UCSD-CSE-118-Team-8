@@ -1,0 +1,57 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.cse118_project.app-mergeDebugResources-94:/values-sw210dp-round-v23/values-sw210dp-round-v23.xml",
+            "map": [
+                {
+                    "source": "/Users/pbbalani/.gradle/caches/8.13/transforms/b95f2146bf865b1a4589764b77bf5608/transformed/protolayout-renderer-1.2.0/res/values-sw210dp-round-v23/values-sw210dp-round-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "10",
+                        "endOffsets": "219"
+                    },
+                    "to": {
+                        "startLines": "8",
+                        "startColumns": "4",
+                        "startOffsets": "450",
+                        "endLines": "12",
+                        "endColumns": "10",
+                        "endOffsets": "614"
+                    }
+                },
+                {
+                    "source": "/Users/pbbalani/.gradle/caches/8.13/transforms/b186e69b85b8ab5f6404db2aa489ff27/transformed/tiles-renderer-1.4.0/res/values-sw210dp-round-v23/values-sw210dp-round-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "10",
+                        "endOffsets": "213"
+                    },
+                    "to": {
+                        "startLines": "13",
+                        "startColumns": "4",
+                        "startOffsets": "619",
+                        "endLines": "17",
+                        "endColumns": "10",
+                        "endOffsets": "777"
+                    }
+                },
+                {
+                    "source": "/Users/pbbalani/.gradle/caches/8.13/transforms/d8e99a3bbe22842ee49bba3779822a53/transformed/wear-1.3.0/res/values-sw210dp-round-v23/values-sw210dp-round-v23.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,123,188,259,322,385",
+                        "endColumns": "67,64,70,62,62,64",
+                        "endOffsets": "118,183,254,317,380,445"
+                    }
+                }
+            ]
+        }
+    ]
+}

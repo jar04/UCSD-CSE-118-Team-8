@@ -1,0 +1,269 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.cse118_project"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="30"
+9        android:targetSdkVersion="36" />
+10
+11    <uses-feature android:name="android.hardware.type.watch" />
+11-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:4:5-64
+11-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:4:19-61
+12
+13    <!-- BLE Permissions -->
+14    <uses-permission android:name="android.permission.BLUETOOTH" />
+14-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:7:5-68
+14-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:7:22-65
+15    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+15-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:8:5-74
+15-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:8:22-71
+16    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+16-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:9:5-79
+16-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:9:22-76
+17    <!-- Android 12+ permissions -->
+18    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+18-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:11:5-73
+18-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:11:22-70
+19    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+19-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:12:5-76
+19-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:12:22-73
+20    <uses-permission android:name="android.permission.WAKE_LOCK" />
+20-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:14:5-68
+20-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:14:22-65
+21
+22    <queries>
+22-->[androidx.wear.tiles:tiles:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/fea33a727d2b9b0eca4cfa87965839fa/transformed/tiles-1.4.0/AndroidManifest.xml:7:5-11:15
+23        <intent>
+23-->[androidx.wear.tiles:tiles:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/fea33a727d2b9b0eca4cfa87965839fa/transformed/tiles-1.4.0/AndroidManifest.xml:8:9-10:18
+24            <action android:name="androidx.wear.tiles.action.BIND_UPDATE_REQUESTER" />
+24-->[androidx.wear.tiles:tiles:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/fea33a727d2b9b0eca4cfa87965839fa/transformed/tiles-1.4.0/AndroidManifest.xml:9:13-87
+24-->[androidx.wear.tiles:tiles:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/fea33a727d2b9b0eca4cfa87965839fa/transformed/tiles-1.4.0/AndroidManifest.xml:9:21-84
+25        </intent>
+26    </queries>
+27
+28    <permission
+28-->[androidx.core:core:1.13.1] /Users/pbbalani/.gradle/caches/8.13/transforms/1a1ce4475ae7d2f0f2b90536dc6a3b37/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+29        android:name="com.example.cse118_project.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+29-->[androidx.core:core:1.13.1] /Users/pbbalani/.gradle/caches/8.13/transforms/1a1ce4475ae7d2f0f2b90536dc6a3b37/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+30        android:protectionLevel="signature" />
+30-->[androidx.core:core:1.13.1] /Users/pbbalani/.gradle/caches/8.13/transforms/1a1ce4475ae7d2f0f2b90536dc6a3b37/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+31
+32    <uses-permission android:name="com.example.cse118_project.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+32-->[androidx.core:core:1.13.1] /Users/pbbalani/.gradle/caches/8.13/transforms/1a1ce4475ae7d2f0f2b90536dc6a3b37/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+32-->[androidx.core:core:1.13.1] /Users/pbbalani/.gradle/caches/8.13/transforms/1a1ce4475ae7d2f0f2b90536dc6a3b37/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+33
+34    <application
+34-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:16:5-77:19
+35        android:allowBackup="true"
+35-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:17:9-35
+36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+36-->[androidx.core:core:1.13.1] /Users/pbbalani/.gradle/caches/8.13/transforms/1a1ce4475ae7d2f0f2b90536dc6a3b37/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+37        android:debuggable="true"
+38        android:extractNativeLibs="false"
+39        android:icon="@mipmap/ic_launcher"
+39-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:18:9-43
+40        android:label="@string/app_name"
+40-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:19:9-41
+41        android:supportsRtl="true"
+41-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:20:9-35
+42        android:testOnly="true"
+43        android:theme="@android:style/Theme.DeviceDefault" >
+43-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:21:9-59
+44        <service
+44-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:22:9-37:19
+45            android:name="com.example.cse118_project.complication.MainComplicationService"
+45-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:23:13-65
+46            android:exported="true"
+46-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:24:13-36
+47            android:label="@string/complication_label"
+47-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:25:13-55
+48            android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER" >
+48-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:26:13-99
+49            <intent-filter>
+49-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:27:13-29:29
+50                <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
+50-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:28:17-116
+50-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:28:25-113
+51            </intent-filter>
+52
+53            <meta-data
+53-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:31:13-33:46
+54                android:name="android.support.wearable.complications.SUPPORTED_TYPES"
+54-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:32:17-86
+55                android:value="SHORT_TEXT" />
+55-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:33:17-43
+56            <meta-data
+56-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:34:13-36:37
+57                android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
+57-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:35:17-92
+58                android:value="0" />
+58-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:36:17-34
+59        </service>
+60        <service
+60-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:38:9-50:19
+61            android:name="com.example.cse118_project.tile.MainTileService"
+61-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:39:13-49
+62            android:exported="true"
+62-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:40:13-36
+63            android:label="@string/tile_label"
+63-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:41:13-47
+64            android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER" >
+64-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:42:13-91
+65            <intent-filter>
+65-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:43:13-45:29
+66                <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+66-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:44:17-88
+66-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:44:25-85
+67            </intent-filter>
+68
+69            <meta-data
+69-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:47:13-49:61
+70                android:name="androidx.wear.tiles.PREVIEW"
+70-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:48:17-59
+71                android:resource="@drawable/tile_preview" />
+71-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:49:17-58
+72        </service>
+73
+74        <uses-library
+74-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:52:9-54:39
+75            android:name="com.google.android.wearable"
+75-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:53:13-55
+76            android:required="true" />
+76-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:54:13-36
+77        <uses-library
+77-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:55:9-57:40
+78            android:name="wear-sdk"
+78-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:56:13-36
+79            android:required="false" />
+79-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:57:13-37
+80        <!--
+81               Set to true if your app is Standalone, that is, it does not require the handheld
+82               app to run.
+83        -->
+84        <meta-data
+84-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:62:9-64:36
+85            android:name="com.google.android.wearable.standalone"
+85-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:63:13-66
+86            android:value="true" />
+86-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:64:13-33
+87
+88        <activity
+88-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:66:9-76:20
+89            android:name="com.example.cse118_project.presentation.MainActivity"
+89-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:67:13-54
+90            android:exported="true"
+90-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:68:13-36
+91            android:taskAffinity=""
+91-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:69:13-36
+92            android:theme="@style/MainActivityTheme.Starting" >
+92-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:70:13-62
+93            <intent-filter>
+93-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:71:13-75:29
+94                <action android:name="android.intent.action.MAIN" />
+94-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:72:17-69
+94-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:72:25-66
+95
+96                <category android:name="android.intent.category.LAUNCHER" />
+96-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:74:17-77
+96-->/Users/pbbalani/Desktop/UCSD-CSE-118-Team-8/galaxy_watch/app/src/main/AndroidManifest.xml:74:27-74
+97            </intent-filter>
+98        </activity>
+99        <activity
+99-->[androidx.compose.ui:ui-tooling-android:1.7.0] /Users/pbbalani/.gradle/caches/8.13/transforms/be62b98ff00214fb59d49ff884fe75c8/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+100            android:name="androidx.compose.ui.tooling.PreviewActivity"
+100-->[androidx.compose.ui:ui-tooling-android:1.7.0] /Users/pbbalani/.gradle/caches/8.13/transforms/be62b98ff00214fb59d49ff884fe75c8/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+101            android:exported="true" />
+101-->[androidx.compose.ui:ui-tooling-android:1.7.0] /Users/pbbalani/.gradle/caches/8.13/transforms/be62b98ff00214fb59d49ff884fe75c8/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+102        <activity
+102-->[com.google.android.gms:play-services-base:18.5.0] /Users/pbbalani/.gradle/caches/8.13/transforms/cae2699e3fe6227dddb14d4df4954597/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:9-173
+103            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+103-->[com.google.android.gms:play-services-base:18.5.0] /Users/pbbalani/.gradle/caches/8.13/transforms/cae2699e3fe6227dddb14d4df4954597/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:19-85
+104            android:exported="false"
+104-->[com.google.android.gms:play-services-base:18.5.0] /Users/pbbalani/.gradle/caches/8.13/transforms/cae2699e3fe6227dddb14d4df4954597/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:146-170
+105            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+105-->[com.google.android.gms:play-services-base:18.5.0] /Users/pbbalani/.gradle/caches/8.13/transforms/cae2699e3fe6227dddb14d4df4954597/transformed/play-services-base-18.5.0/AndroidManifest.xml:5:86-145
+106
+107        <meta-data
+107-->[com.google.android.gms:play-services-basement:18.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/65411bc1dae003911ea0d52d07fa9d03/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:9-122
+108            android:name="com.google.android.gms.version"
+108-->[com.google.android.gms:play-services-basement:18.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/65411bc1dae003911ea0d52d07fa9d03/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:20-65
+109            android:value="@integer/google_play_services_version" />
+109-->[com.google.android.gms:play-services-basement:18.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/65411bc1dae003911ea0d52d07fa9d03/transformed/play-services-basement-18.4.0/AndroidManifest.xml:6:66-119
+110
+111        <provider
+111-->[androidx.emoji2:emoji2:1.3.0] /Users/pbbalani/.gradle/caches/8.13/transforms/a8a9424b049dc80f1f8647f9f77b0ece/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+112            android:name="androidx.startup.InitializationProvider"
+112-->[androidx.emoji2:emoji2:1.3.0] /Users/pbbalani/.gradle/caches/8.13/transforms/a8a9424b049dc80f1f8647f9f77b0ece/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+113            android:authorities="com.example.cse118_project.androidx-startup"
+113-->[androidx.emoji2:emoji2:1.3.0] /Users/pbbalani/.gradle/caches/8.13/transforms/a8a9424b049dc80f1f8647f9f77b0ece/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+114            android:exported="false" >
+114-->[androidx.emoji2:emoji2:1.3.0] /Users/pbbalani/.gradle/caches/8.13/transforms/a8a9424b049dc80f1f8647f9f77b0ece/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+115            <meta-data
+115-->[androidx.emoji2:emoji2:1.3.0] /Users/pbbalani/.gradle/caches/8.13/transforms/a8a9424b049dc80f1f8647f9f77b0ece/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+116                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+116-->[androidx.emoji2:emoji2:1.3.0] /Users/pbbalani/.gradle/caches/8.13/transforms/a8a9424b049dc80f1f8647f9f77b0ece/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+117                android:value="androidx.startup" />
+117-->[androidx.emoji2:emoji2:1.3.0] /Users/pbbalani/.gradle/caches/8.13/transforms/a8a9424b049dc80f1f8647f9f77b0ece/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+118            <meta-data
+118-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/pbbalani/.gradle/caches/8.13/transforms/75039fc4af8fc79b09533c53cec9f3e1/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:29:13-31:52
+119                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+119-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/pbbalani/.gradle/caches/8.13/transforms/75039fc4af8fc79b09533c53cec9f3e1/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:30:17-78
+120                android:value="androidx.startup" />
+120-->[androidx.lifecycle:lifecycle-process:2.8.3] /Users/pbbalani/.gradle/caches/8.13/transforms/75039fc4af8fc79b09533c53cec9f3e1/transformed/lifecycle-process-2.8.3/AndroidManifest.xml:31:17-49
+121            <meta-data
+121-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+122                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+122-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+123                android:value="androidx.startup" />
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+124        </provider>
+125
+126        <activity
+126-->[androidx.compose.ui:ui-test-manifest:1.7.0] /Users/pbbalani/.gradle/caches/8.13/transforms/4e5d32ab06f18d143615cb1627dc5747/transformed/ui-test-manifest-1.7.0/AndroidManifest.xml:23:9-25:39
+127            android:name="androidx.activity.ComponentActivity"
+127-->[androidx.compose.ui:ui-test-manifest:1.7.0] /Users/pbbalani/.gradle/caches/8.13/transforms/4e5d32ab06f18d143615cb1627dc5747/transformed/ui-test-manifest-1.7.0/AndroidManifest.xml:24:13-63
+128            android:exported="true" />
+128-->[androidx.compose.ui:ui-test-manifest:1.7.0] /Users/pbbalani/.gradle/caches/8.13/transforms/4e5d32ab06f18d143615cb1627dc5747/transformed/ui-test-manifest-1.7.0/AndroidManifest.xml:25:13-36
+129
+130        <receiver
+130-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+131            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+131-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+132            android:directBootAware="false"
+132-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+133            android:enabled="true"
+133-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+134            android:exported="true"
+134-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+135            android:permission="android.permission.DUMP" >
+135-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+136            <intent-filter>
+136-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+137                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+137-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+137-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+138            </intent-filter>
+139            <intent-filter>
+139-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+140                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+140-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+140-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+141            </intent-filter>
+142            <intent-filter>
+142-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+143                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+143-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+143-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+144            </intent-filter>
+145            <intent-filter>
+145-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+146                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+146-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+146-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/pbbalani/.gradle/caches/8.13/transforms/ee766bf3a1c975227fceef2057644a16/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+147            </intent-filter>
+148        </receiver>
+149    </application>
+150
+151</manifest>
