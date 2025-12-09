@@ -4,6 +4,7 @@ Wi-Fi based servo lock controller with:
 - Persistent MAC storage (keys.csv)
 - Pairing mode via GPIO 21 short press (30 sec)
 - FULL RESET via 10-second button hold → clears keys.csv
+- 1602A I2C LCD status display (lock state / pairing / reset)
 """
 
 import subprocess
@@ -13,6 +14,57 @@ import threading
 import pigpio
 from time import sleep
 import os
+
+# ===== LCD setup =====
+LCD_ENABLED = True
+try:
+    from RPLCD.i2c import CharLCD
+except ImportError:
+    print("[WARN] RPLCD not installed, LCD output disabled", file=sys.stderr)
+    LCD_ENABLED = False
+
+# Change this if i2cdetect -y 1 shows a different address (e.g. 0x3F)
+LCD_I2C_ADDR = 0x27
+LCD_CHIP = "PCF8574"
+
+lcd = None
+if LCD_ENABLED:
+    try:
+        lcd = CharLCD(LCD_CHIP, LCD_I2C_ADDR, cols=16, rows=2)
+    except Exception as e:
+        print(f"[WARN] Failed to init LCD: {e}", file=sys.stderr)
+        LCD_ENABLED = False
+
+
+def lcd_show(line1: str, line2: str = ""):
+    """Write up to 2 lines on the LCD (if enabled)."""
+    if not LCD_ENABLED or lcd is None:
+        return
+    try:
+        lcd.clear()
+        lcd.write_string(line1[:16])
+        if line2:
+            lcd.cursor_pos = (1, 0)
+            lcd.write_string(line2[:16])
+    except Exception as e:
+        print(f"[WARN] LCD write failed: {e}", file=sys.stderr)
+
+
+def lcd_show_locked():
+    lcd_show("Door: LOCKED", "No phone nearby")
+
+
+def lcd_show_unlocked():
+    lcd_show("Door: UNLOCKED", "Welcome!")
+
+
+def lcd_show_pairing():
+    lcd_show("PAIRING MODE", "Connect device")
+
+
+def lcd_show_keys_cleared():
+    lcd_show("ALL KEYS ERASED", "Hold 10s = reset")
+
 
 # ===== Servo setup =====
 SERVO_PIN = 18
@@ -39,10 +91,12 @@ def toggle_servo():
         print("[toggle_servo] LOCK → UNLOCK")
         set_angle(90)
         lock = 1
+        lcd_show_unlocked()
     else:
         print("[toggle_servo] UNLOCK → LOCK")
         set_angle(0)
         lock = 0
+        lcd_show_locked()
     print(f"[toggle_servo] lock={lock}")
 
 
@@ -74,6 +128,7 @@ def clear_keys():
     print("🟥 ALL MAC KEYS ERASED")
     print("keys.csv wiped, authorized list cleared.")
     print("==============================\n")
+    lcd_show_keys_cleared()
 
 
 AUTHORIZED_MACS = load_keys()
@@ -91,7 +146,8 @@ def run_iw_station_dump() -> str:
             capture_output=True, text=True, check=True
         )
         return result.stdout
-    except:
+    except Exception as e:
+        print(f"[WARN] iw station dump failed: {e}", file=sys.stderr)
         return ""
 
 
@@ -107,7 +163,7 @@ def get_connected_stations() -> set:
 
 # ===== GPIO Button Logic =====
 PAIR_BUTTON_GPIO = 21
-PAIR_WINDOW_SEC = 30
+PAIR_WINDOW_SEC = 10
 RESET_HOLD_SEC = 10  # hold button 10 seconds to clear keys
 
 pairing_mode = False
@@ -123,6 +179,7 @@ def start_pairing_mode():
     pairing_end_time = time.time() + PAIR_WINDOW_SEC
     print("\n🔵 PAIRING MODE STARTED (30 seconds)")
     print("Connect device to Wi-Fi to authorize.\n")
+    lcd_show_pairing()
 
 
 def stop_pairing_mode():
@@ -130,11 +187,16 @@ def stop_pairing_mode():
     pairing_mode = False
     print("\n🟢 Pairing mode ended.")
     print(f"Authorized MACs: {AUTHORIZED_MACS}\n")
+    # After pairing ends, show current lock state
+    if lock == 0:
+        lcd_show_locked()
+    else:
+        lcd_show_unlocked()
 
 
 def button_watcher():
     """Detect short press (pair) and long press (reset keys)."""
-    global AUTHORIZED_MACS
+    global AUTHORIZED_MACS, lock
 
     while True:
         if pi.read(PAIR_BUTTON_GPIO) == 0:  # button pressed
@@ -150,8 +212,8 @@ def button_watcher():
                     clear_keys()
                     # return to locked position
                     set_angle(0)
-                    global lock
                     lock = 0
+                    lcd_show_locked()
                     # prevent also triggering pairing mode
                     time.sleep(1)
                     break
@@ -179,8 +241,10 @@ def main():
     print("[INFO] Wi-Fi Servo Lock System Running")
     print(f"[INFO] Loaded authorized MACs: {AUTHORIZED_MACS}\n")
 
+    # On startup, lock door and show status
     set_angle(0)
     lock = 0
+    lcd_show_locked()
 
     while True:
         stations = get_connected_stations()
@@ -194,7 +258,6 @@ def main():
                         AUTHORIZED_MACS.add(mac)
                         save_key(mac)
                         print(f"[PAIR] Authorized new MAC: {mac}")
-
         else:
             any_present = any(mac in stations for mac in AUTHORIZED_MACS)
 
@@ -218,3 +281,10 @@ if __name__ == "__main__":
         pi.set_servo_pulsewidth(SERVO_PIN, 0)
         pi.stop()
         print("[INFO] pigpio stopped.")
+        if LCD_ENABLED and lcd is not None:
+            try:
+                lcd_show("Shutting down", "")
+                time.sleep(1)
+                lcd.clear()
+            except Exception:
+                pass
